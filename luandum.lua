@@ -68,10 +68,10 @@ end
 
 --
 
-function argCheck(t)
+function argCheck(...)
     if not t or #t == 0 then msg_error("invalidArgument") end
 
-    for i, tt in ipairs(t) do
+    for i, tt in ipairs({...}) do
         local argType, argument = tt[1], tt[2]
 
         if not argType or not argument then msg_error("invalidType") end
@@ -102,7 +102,7 @@ end
 function addDefaults(t)
     local dataTable = {}
 
-    argCheck({{TYPE_TABLE, t}})
+    argCheck({TYPE_TABLE, t})
 
     t.get = function(self, var)
         if self.onGet then self:OnGet() end
@@ -184,7 +184,7 @@ TYPE_USERDATA = "userdata"
 local playerClass = registerClass("Player")
 
 function playerClass:main(p_Age, p_Name)
-    argCheck{ {TYPE_INT, p_Age}, {TYPE_STRING, p_Name} }
+    argCheck({TYPE_INT, p_Age}, {TYPE_STRING, p_Name})
 
     addDefaults(self)
 
