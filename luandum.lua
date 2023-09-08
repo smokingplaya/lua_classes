@@ -69,9 +69,10 @@ end
 --
 
 function argCheck(...)
+    local t = {...}
     if not t or #t == 0 then msg_error("invalidArgument") end
 
-    for i, tt in ipairs({...}) do
+    for i, tt in ipairs(t) do
         local argType, argument = tt[1], tt[2]
 
         if not argType or not argument then msg_error("invalidType") end
