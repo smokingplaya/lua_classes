@@ -115,9 +115,9 @@ function addDefaults(t)
     end
 
     t.set = function(self, var, value)
-        if self.onSet then self:OnSet() end
-    
         dataTable[var] = value
+
+        if self.onSet then self:OnSet() end
     end
 end
 
