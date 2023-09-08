@@ -118,7 +118,7 @@ function addDefaults(t)
     t.set = function(self, var, value)
         dataTable[var] = value
 
-        if self.onSet then self:OnSet(var, value) end
+        if self.onSet then self:onSet(var, value) end
     end
 end
 
@@ -189,11 +189,16 @@ function playerClass:main(p_Age, p_Name)
 
     addDefaults(self)
 
-    self.onSet = function()
-        println(self:get("p_age"))
-    end
+    self.onSet = function(_, var, value) println(var, " = ", value) end -- _ cause self already defined
 
     self:set("p_age", p_Age)
 end
 
 local player = newClass(CLASS_PLAYER, 6, "smokingplaya")
+player:set("getBack", function(yappi_dor)
+    println("getBack function; example var = ", yappi_dor)
+end)
+
+local getBackFunc = player:get("getBack")
+
+getBackFunc(666)
