@@ -106,7 +106,7 @@ function addDefaults(t)
     argCheck({TYPE_TABLE, t})
 
     t.get = function(self, var)
-        if self.onGet then self:OnGet() end
+        if self.onGet then self:OnGet(var) end
     
         return dataTable[var]
     end
@@ -118,7 +118,7 @@ function addDefaults(t)
     t.set = function(self, var, value)
         dataTable[var] = value
 
-        if self.onSet then self:OnSet() end
+        if self.onSet then self:OnSet(var, value) end
     end
 end
 
@@ -189,9 +189,11 @@ function playerClass:main(p_Age, p_Name)
 
     addDefaults(self)
 
-    self:set("p_age", p_Age)
+    self.onSet = function()
+        println(self:get("p_age"))
+    end
 
-    println(self:get("p_age"))
+    self:set("p_age", p_Age)
 end
 
 local player = newClass(CLASS_PLAYER, 6, "smokingplaya")
