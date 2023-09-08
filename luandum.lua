@@ -89,7 +89,7 @@ end
 -- example:
 -- local player = newClass(CLASS_PLAYER, id64)
 -- addDefaults(player)
--- player:set("nick", "smokingplaye")
+-- player:set("nick", "smokingplaya")
 -- println(player:get("nick")) -- => string "smokingplaya"
 --
 -- second example:
